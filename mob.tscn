@@ -14,3 +14,6 @@ size = Vector3(1.38887, 0.952759, 1.86293)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0242844, 0.289856, -0.104027)
 shape = SubResource("BoxShape3D_br7cq")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-1.16278, -1, -1.35912, 2.32555, 2, 3.45163)
