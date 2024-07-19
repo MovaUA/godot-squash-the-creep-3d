@@ -9,7 +9,7 @@ func _on_mob_timer_timeout():
 
 	# Choose a random location on the SpawnPath.
 	# We store the reference to the SpawnLocation node.
-	var mob_spawn_location = get_node("SpawnPath/SpawnLocation")
+	var mob_spawn_location = get_node("SpawnPath/SpawnLocation") as PathFollow3D
 	# And give it a random offset.
 	mob_spawn_location.progress_ratio = randf()
 
