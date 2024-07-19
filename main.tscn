@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://4buvnipk0sr"]
+[gd_scene load_steps=7 format=3 uid="uid://4buvnipk0sr"]
 
 [ext_resource type="PackedScene" uid="uid://deapvm4l3v8a2" path="res://player.tscn" id="1_e0ff3"]
 
@@ -7,6 +7,14 @@ size = Vector3(60, 2, 60)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ot1n"]
 size = Vector3(60, 2, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pcvg"]
+albedo_color = Color(0.968627, 0.545098, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_42ta5"]
+material = SubResource("StandardMaterial3D_4pcvg")
+
+[sub_resource type="Curve3D" id="Curve3D_ut8ae"]
 
 [node name="Main" type="Node"]
 
@@ -32,3 +40,26 @@ transform = Transform3D(1, -5.95416e-16, 2.4663e-16, 2.4663e-16, 0.707107, 0.707
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 19)
 projection = 1
 size = 19.0
+
+[node name="Cylinders" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -14)
+mesh = SubResource("CylinderMesh_42ta5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 15)
+mesh = SubResource("CylinderMesh_42ta5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -14)
+mesh = SubResource("CylinderMesh_42ta5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 15)
+mesh = SubResource("CylinderMesh_42ta5")
+
+[node name="SpawnLocation" type="Path3D" parent="."]
+curve = SubResource("Curve3D_ut8ae")
+
+[node name="SpawnPath" type="PathFollow3D" parent="SpawnLocation"]
