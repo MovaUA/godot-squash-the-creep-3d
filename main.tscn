@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://4buvnipk0sr"]
+[gd_scene load_steps=9 format=3 uid="uid://4buvnipk0sr"]
 
 [ext_resource type="PackedScene" uid="uid://deapvm4l3v8a2" path="res://player.tscn" id="1_e0ff3"]
+[ext_resource type="Script" path="res://main.gd" id="1_n156p"]
+[ext_resource type="PackedScene" uid="uid://bqenys15i5hbj" path="res://mob.tscn" id="2_ku4dy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3n1p"]
 size = Vector3(60, 2, 60)
@@ -14,9 +16,16 @@ albedo_color = Color(0.968627, 0.545098, 0, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_42ta5"]
 material = SubResource("StandardMaterial3D_4pcvg")
 
-[sub_resource type="Curve3D" id="Curve3D_ut8ae"]
+[sub_resource type="Curve3D" id="Curve3D_montp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.9452, 0, -13.7993, 0, 0, 0, 0, 0, 0, 13.0801, 0, 15.0129, 0, 0, 0, 0, 0, 0, -13.0801, 0, 14.9679, 0, 0, 0, 0, 0, 0, -13.0351, 0, -13.7993, 0, 0, 0, 0, 0, 0, 12.9452, 0, -13.7993),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
 
 [node name="Main" type="Node"]
+script = ExtResource("1_n156p")
+mob_scene = ExtResource("2_ku4dy")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -59,7 +68,14 @@ mesh = SubResource("CylinderMesh_42ta5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 15)
 mesh = SubResource("CylinderMesh_42ta5")
 
-[node name="SpawnLocation" type="Path3D" parent="."]
-curve = SubResource("Curve3D_ut8ae")
+[node name="SpawnPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_montp")
 
-[node name="SpawnPath" type="PathFollow3D" parent="SpawnLocation"]
+[node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
+transform = Transform3D(-0.999983, 0, -0.00468003, 0, 1, 0, 0.00468003, 0, -0.999983, 12.9452, 0, -13.7993)
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
