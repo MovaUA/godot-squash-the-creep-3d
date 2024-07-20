@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+## Emitted when the player was hit by a mob.
+# Put this at the top of the script.
+signal hit
+
 ## How fast the player moves in meters per second.
 @export var speed = 14
 ## Vertical impulse applied to the character upon jumping in meters per second.
@@ -73,3 +77,12 @@ func _physics_process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
+
+
+func _on_mob_detector_body_entered(body):
+	die()
+
+
+func die():
+	hit.emit()
+	queue_free()
