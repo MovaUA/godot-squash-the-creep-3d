@@ -79,7 +79,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_mob_detector_body_entered(body):
+func _on_mob_detector_body_entered(_body):
 	die()
 
 
