@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://mob.gd" id="1_qdyaq"]
 [ext_resource type="PackedScene" uid="uid://dy2af8qmsous2" path="res://art/mob.glb" id="1_re1xo"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_sb53n"]
-height = 0.9
+[sub_resource type="SphereShape3D" id="SphereShape3D_8ptgm"]
 radius = 1.0
 
 [node name="Mob" type="CharacterBody3D" groups=["mob"]]
@@ -18,7 +17,7 @@ script = ExtResource("1_qdyaq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0242844, 0.159359, -0.104027)
-shape = SubResource("CylinderShape3D_sb53n")
+shape = SubResource("SphereShape3D_8ptgm")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-1.16278, -1, -1.35912, 2.32555, 2, 3.45163)
