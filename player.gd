@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 ## Emitted when the player was hit by a mob.
-# Put this at the top of the script.
 signal hit
 
 ## How fast the player moves in meters per second.
@@ -15,7 +14,6 @@ signal hit
 @export var bounce_impulse = 16
 
 var target_velocity = Vector3.ZERO
-
 
 func _physics_process(delta):
 	# We create a local variable to store the input direction.
@@ -33,10 +31,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_forward"):
 		direction.z -= 1
 
+	# Prevent diagonal moving fast
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
-		# Setting the basis property will affect the rotation of the node.
-		$Pivot.basis = Basis.looking_at(direction)
+		$Pivot.look_at(position + direction, Vector3.UP)
 
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
@@ -51,8 +49,8 @@ func _physics_process(delta):
 		# If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 
-
 	# Iterate through all collisions that occurred this frame
+	# in C this would be for(int i = 0; i < collisions.Count; i++)
 	for index in range(get_slide_collision_count()):
 		# We get one of the collisions with the player
 		var collision = get_slide_collision(index)
@@ -78,11 +76,8 @@ func _physics_process(delta):
 	velocity = target_velocity
 	move_and_slide()
 
-
 func _on_mob_detector_body_entered(_body):
 	die()
-
-
 func die():
 	hit.emit()
 	queue_free()

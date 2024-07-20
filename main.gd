@@ -1,7 +1,7 @@
 extends Node
 
+## The Mob scene to instance.
 @export var mob_scene: PackedScene
-
 
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -9,7 +9,7 @@ func _on_mob_timer_timeout():
 
 	# Choose a random location on the SpawnPath.
 	# We store the reference to the SpawnLocation node.
-	var mob_spawn_location = get_node("SpawnPath/SpawnLocation") as PathFollow3D
+	var mob_spawn_location: PathFollow3D = get_node("SpawnPath/SpawnLocation")
 	# And give it a random offset.
 	mob_spawn_location.progress_ratio = randf()
 
@@ -18,7 +18,6 @@ func _on_mob_timer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
-
 
 func _on_player_hit():
 	$MobTimer.stop()
