@@ -27,6 +27,7 @@ point_count = 5
 
 [sub_resource type="Theme" id="Theme_t32al"]
 default_font = ExtResource("4_j2ky1")
+default_font_size = 36
 
 [node name="Main" type="Node"]
 script = ExtResource("1_n156p")

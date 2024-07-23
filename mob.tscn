@@ -20,6 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0242844, 0.159359, -0.10402
 shape = SubResource("SphereShape3D_8ptgm")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-aabb = AABB(-1.16278, -1, -1.35912, 2.32555, 2, 3.45163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36316, 0)
+aabb = AABB(-1.66042, -1.26164, -1.65987, 3.32082, 2.52327, 4.05314)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

@@ -78,6 +78,8 @@ func _physics_process(delta):
 
 func _on_mob_detector_body_entered(_body):
 	die()
+
+
 func die():
 	hit.emit()
 	queue_free()
