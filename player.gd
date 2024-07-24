@@ -31,10 +31,16 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_forward"):
 		direction.z -= 1
 
-	# Prevent diagonal moving fast
 	if direction != Vector3.ZERO:
+		# Prevent diagonal moving fast
 		direction = direction.normalized()
 		$Pivot.look_at(position + direction, Vector3.UP)
+
+		$AnimationPlayer.speed_scale = 4
+	else:
+		$AnimationPlayer.speed_scale = 1
+
+	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
@@ -78,7 +84,6 @@ func _physics_process(delta):
 
 func _on_mob_detector_body_entered(_body):
 	die()
-
 
 func die():
 	hit.emit()
